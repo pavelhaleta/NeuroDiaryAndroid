@@ -36,13 +36,12 @@ open class SQLTable(var tableName: String) : SQLOperation {
                 "); "
             }
         }
-        Log.d("SQLData", script.toString())
         return script
     }
 
     override fun load(db: SQLiteDatabase, id: Int) {
         super.load(db, id)
-        var script = "SELECT $tableName ("
+        var script = "SELECT "
         for (column in columns) {
             script += "${column.name} ${column.type}"
             script += if (columns.indexOf(column) != columns.size - 1) {

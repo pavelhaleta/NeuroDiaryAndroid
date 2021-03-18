@@ -25,11 +25,31 @@ class PeriodData : SQLTable("PeriodData"){
         contentData.put(this.name, _name.value as String)
         if (id == -1) {
             //create
-            db.insert(this.tableName, null,contentData)
+            id = db.insert(this.tableName, null,contentData).toInt()
         } else {
             //update
             db.update(this.tableName, contentData, "id = $id", null)
         }
     }
+    companion object{
+        val tableName = "PeriodData"
 
+        fun toList(db: SQLiteDatabase, whereClause: String): ArrayList<PeriodData>?{
+            val script = "SELECT id FROM ${tableName} $whereClause"
+            val cursor = db.rawQuery(script, null)
+            if (cursor.count == 0) {
+                cursor.close()
+                return null
+            }
+            val list = ArrayList<PeriodData>()
+            cursor.moveToFirst()
+            for (i in 0 until cursor.count){
+                val element = PeriodData()
+                element.load(db, cursor.getInt(0))
+                list.add(element)
+            }
+            cursor.close()
+            return list
+        }
+    }
 }

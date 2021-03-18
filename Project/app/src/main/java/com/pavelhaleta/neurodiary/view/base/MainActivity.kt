@@ -1,4 +1,4 @@
-package com.pavelhaleta.neurodiary.view
+package com.pavelhaleta.neurodiary.view.base
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

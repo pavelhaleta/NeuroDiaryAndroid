@@ -1,9 +1,8 @@
 package com.pavelhaleta.neurodiary.view.main
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.pavelhaleta.neurodiary.R
-import com.pavelhaleta.neurodiary.view.MainActivity
+import com.pavelhaleta.neurodiary.view.base.MainActivity
 
 class MainMenuActivity : MainActivity(R.layout.activity_main) {
 

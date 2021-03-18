@@ -2,6 +2,9 @@ package com.pavelhaleta.neurodiary.database.tables
 
 import android.content.ContentValues
 import android.database.sqlite.SQLiteDatabase
+import androidx.core.database.getFloatOrNull
+import androidx.core.database.getIntOrNull
+import androidx.core.database.getStringOrNull
 import com.pavelhaleta.neurodiary.database.basic.SQLColumn
 import com.pavelhaleta.neurodiary.database.basic.SQLDataType
 import com.pavelhaleta.neurodiary.database.basic.SQLTable
@@ -36,12 +39,33 @@ class ContentParent : SQLTable("ContentParent"){
         contentData.put(_parentId.toString(), _contentId.value as Int)
         if (id == -1) {
             //create
-            db.insert(this.tableName, null,contentData)
+            id = db.insert(this.tableName, null,contentData).toInt()
         } else {
             //update
             db.update(this.tableName, contentData, "id = $id", null)
         }
     }
 
+    companion object{
+        val tableName = "ContentParent"
+
+        fun toList(db: SQLiteDatabase, whereClause: String): ArrayList<ContentParent>?{
+            val script = "SELECT id FROM ${tableName} $whereClause"
+            val cursor = db.rawQuery(script, null)
+            if (cursor.count == 0) {
+                cursor.close()
+                return null
+            }
+            val list = ArrayList<ContentParent>()
+            cursor.moveToFirst()
+            for (i in 0 until cursor.count){
+                val element = ContentParent()
+                element.load(db, cursor.getInt(0))
+                list.add(element)
+            }
+            cursor.close()
+            return list
+        }
+    }
 
 }

@@ -64,9 +64,6 @@ class Record : SQLTable("Record"){
             _textData.value = value
         }
 
-    override fun load(db: SQLiteDatabase, id: Int) {
-        super.load(db, id)
-    }
 
     override fun save(db: SQLiteDatabase) {
         super.save(db)
@@ -75,10 +72,31 @@ class Record : SQLTable("Record"){
         contentData.put(_timeWrite.toString(), _timeWrite.value as String)
         if (id == -1) {
             //create
-            db.insert(this.tableName, null,contentData)
+            id = db.insert(this.tableName, null,contentData).toInt()
         } else {
             //update
             db.update(this.tableName, contentData, "id = $id", null)
+        }
+    }
+    companion object{
+        val tableName = "Record"
+
+        fun toList(db: SQLiteDatabase, whereClause: String): ArrayList<Record>?{
+            val script = "SELECT id FROM ${tableName} $whereClause"
+            val cursor = db.rawQuery(script, null)
+            if (cursor.count == 0) {
+                cursor.close()
+                return null
+            }
+            val list = ArrayList<Record>()
+            cursor.moveToFirst()
+            for (i in 0 until cursor.count){
+                val element = Record()
+                element.load(db, cursor.getInt(0))
+                list.add(element)
+            }
+            cursor.close()
+            return list
         }
     }
 

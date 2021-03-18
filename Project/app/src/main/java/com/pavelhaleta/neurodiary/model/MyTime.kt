@@ -7,7 +7,7 @@ class MyTime() {
     var hour: Int = 0
 
     constructor(timeString: String): this(){
-        
+
     }
 
     override fun toString(): String {

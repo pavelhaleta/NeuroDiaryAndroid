@@ -8,5 +8,9 @@ enum class SQLDataType( var NAME: String) {
     INTNULL(" INTEGER"),
     BOOL(" INTEGER NOT NULL DEFAULT 0"),
     REAL(" REAL NOT NULL DEFAULT 0"),
-    REALNULL(" REAL")
+    REALNULL(" REAL");
+
+    override fun toString(): String {
+        return NAME
+    }
 }

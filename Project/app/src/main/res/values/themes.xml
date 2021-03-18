@@ -1,10 +1,7 @@
 <resources>
     <!-- Base application theme. -->
-    <style name="Theme.NeuroDiary" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.NeuroDiary" parent="Theme.MaterialComponents.DayNight">
         <!-- Primary brand color. -->
-        <item name="colorOnBackground">@color/white</item>
-        <item name="colorPrimary">@color/purple_700</item>
-        <item name="colorPrimaryDark">@color/black</item>
         <!-- Status bar color. -->
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>

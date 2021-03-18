@@ -6,7 +6,7 @@ import com.pavelhaleta.neurodiary.database.basic.SQLColumn
 import com.pavelhaleta.neurodiary.database.basic.SQLDataType
 import com.pavelhaleta.neurodiary.database.basic.SQLTable
 
-class ContentProperty : SQLTable("ContentField"){
+class ContentProperty : SQLTable("ContentProperty"){
     //table fields
     private val _contentId = SQLColumn("content_id", SQLDataType.INT, this, -1)
     private val _propertyId = SQLColumn("property_id", SQLDataType.INT, this, -1)
@@ -14,7 +14,6 @@ class ContentProperty : SQLTable("ContentField"){
     //load objects
     private var _content: MemoryContent = MemoryContent()
     private var _property: MemoryContent = MemoryContent()
-
 
     //context objects
     var content: MemoryContent
@@ -37,10 +36,31 @@ class ContentProperty : SQLTable("ContentField"){
         contentData.put(_propertyId.toString(), _propertyId.value as Int)
         if (id == -1) {
             //create
-            db.insert(this.tableName, null,contentData)
+            id = db.insert(this.tableName, null,contentData).toInt()
         } else {
             //update
             db.update(this.tableName, contentData, "id = $id", null)
+        }
+    }
+    companion object{
+        val tableName = "ContentProperty"
+
+        fun toList(db: SQLiteDatabase, whereClause: String): ArrayList<ContentProperty>?{
+            val script = "SELECT id FROM ${tableName} $whereClause"
+            val cursor = db.rawQuery(script, null)
+            if (cursor.count == 0) {
+                cursor.close()
+                return null
+            }
+            val list = ArrayList<ContentProperty>()
+            cursor.moveToFirst()
+            for (i in 0 until cursor.count){
+                val element = ContentProperty()
+                element.load(db, cursor.getInt(0))
+                list.add(element)
+            }
+            cursor.close()
+            return list
         }
     }
 

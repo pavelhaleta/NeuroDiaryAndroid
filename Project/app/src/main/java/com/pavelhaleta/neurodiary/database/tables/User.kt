@@ -1,5 +1,6 @@
 package com.pavelhaleta.neurodiary.database.tables
 
+import android.content.ContentValues
 import android.database.sqlite.SQLiteDatabase
 import com.pavelhaleta.neurodiary.database.basic.SQLColumn
 import com.pavelhaleta.neurodiary.database.basic.SQLDataType
@@ -44,30 +45,42 @@ class User : SQLTable("User"){
             _periodDataId.value = _periodData.id
         }
 
-
-    override fun load(db: SQLiteDatabase, id: Int) {
-        super.load(db, id)
-        val cursor = db.rawQuery("SELECT $_name, $_password, $_goalId, $_periodDataId FROM ${this.tableName} WHERE id = $id;", null)
-        if (cursor.count == 0) {
-            cursor.close()
-            return
-        }
-        cursor.moveToFirst()
-
-        this.id = id
-        name = cursor.getString(cursor.getColumnIndex(_name.toString()))
-        password = cursor.getString(cursor.getColumnIndex(_password.toString()))
-        goal = Goal().also { it.load(db, cursor.getInt(cursor.getColumnIndex(_goalId.toString()))) }
-        periodData = PeriodData().also { it.load(db, cursor.getInt(cursor.getColumnIndex(_periodDataId.toString()))) }
-        cursor.close()
-    }
-
     override fun save(db: SQLiteDatabase) {
         super.save(db)
+        val contentData = ContentValues()
+        contentData.put(_name.toString(), _name.value as String)
+        contentData.put(_password.toString(), _password.value as String)
+        contentData.put(_goalId.toString(), _goalId.value as Int)
+        contentData.put(_periodDataId.toString(), _periodDataId.value as Int)
+        if (id == -1) {
+            //create
+            id = db.insert(this.tableName, null,contentData).toInt()
+        } else {
+            //update
+            db.update(this.tableName, contentData, "id = $id", null)
+        }
     }
 
-    override fun delete(db: SQLiteDatabase) {
-        super.delete(db)
+    companion object{
+        val tableName = "User"
+
+        fun toList(db: SQLiteDatabase, whereClause: String): ArrayList<User>?{
+            val script = "SELECT id FROM ${tableName} $whereClause"
+            val cursor = db.rawQuery(script, null)
+            if (cursor.count == 0) {
+                cursor.close()
+                return null
+            }
+            val list = ArrayList<User>()
+            cursor.moveToFirst()
+            for (i in 0 until cursor.count){
+                val element = User()
+                element.load(db, cursor.getInt(0))
+                list.add(element)
+            }
+            cursor.close()
+            return list
+        }
     }
 
 }

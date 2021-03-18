@@ -1,24 +1,34 @@
 package com.pavelhaleta.neurodiary.view.start
 
-import androidx.appcompat.app.AppCompatActivity
+
 import android.os.Bundle
-import android.view.Window
+import androidx.fragment.app.add
+import androidx.fragment.app.commit
 import com.pavelhaleta.neurodiary.R
-import com.pavelhaleta.neurodiary.view.MainActivity
+import com.pavelhaleta.neurodiary.database.DBHelper
+import com.pavelhaleta.neurodiary.view.base.MainActivity
 
 class StartActivity : MainActivity(R.layout.activity_start) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
     }
 
     override fun onStart() {
         super.onStart()
-
+        if (checkCurrentAccount()){
+            //add sign in fragment
+            supportFragmentManager.commit {
+                setReorderingAllowed(true)
+                add<SignInFragment>(R.id.fragment_container_view)
+            }
+        }else{
+            //add sign up fragment
+        }
     }
     override fun onResume() {
         super.onResume()
-
     }
     override fun onPause() {
         super.onPause()
@@ -35,5 +45,12 @@ class StartActivity : MainActivity(R.layout.activity_start) {
 
     override fun onBackPressed() {
         super.onBackPressed()
+    }
+
+    private fun checkCurrentAccount(): Boolean{
+        val dbHelper = DBHelper(this)
+
+        dbHelper.close()
+        return true
     }
 }

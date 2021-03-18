@@ -1,6 +1,13 @@
 <resources>
+    <!--Main string-->
     <string name="app_name">NeuroDiary</string>
+    <string name="mode_developer">Developer mode</string>
+    <string name="mode_user">User mode</string>
+    <string name="mode_tester">Tester mode</string>
+    <!--Registration and enter-->
     <string name="sign_in">Sign In</string>
     <string name="sign_up">Sign Up</string>
     <string name="welcome_title">Welcome to NeuroDiary</string>
+    <string name="password">Password</string>
+    <string name="account_name">Account name</string>
 </resources>
