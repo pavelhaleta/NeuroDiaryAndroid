@@ -48,7 +48,7 @@ class RealContent : SQLTable("RealContent"){
         val tableName = "RealContent"
 
         fun toList(db: SQLiteDatabase, whereClause: String): ArrayList<RealContent>?{
-            val script = "SELECT id FROM ${tableName} $whereClause"
+            val script = "SELECT id FROM $tableName $whereClause"
             val cursor = db.rawQuery(script, null)
             if (cursor.count == 0) {
                 cursor.close()

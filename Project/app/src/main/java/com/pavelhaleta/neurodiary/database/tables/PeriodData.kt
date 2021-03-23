@@ -35,7 +35,7 @@ class PeriodData : SQLTable("PeriodData"){
         val tableName = "PeriodData"
 
         fun toList(db: SQLiteDatabase, whereClause: String): ArrayList<PeriodData>?{
-            val script = "SELECT id FROM ${tableName} $whereClause"
+            val script = "SELECT id FROM $tableName $whereClause"
             val cursor = db.rawQuery(script, null)
             if (cursor.count == 0) {
                 cursor.close()

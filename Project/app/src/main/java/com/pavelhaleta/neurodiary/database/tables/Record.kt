@@ -82,7 +82,7 @@ class Record : SQLTable("Record"){
         val tableName = "Record"
 
         fun toList(db: SQLiteDatabase, whereClause: String): ArrayList<Record>?{
-            val script = "SELECT id FROM ${tableName} $whereClause"
+            val script = "SELECT id FROM $tableName $whereClause"
             val cursor = db.rawQuery(script, null)
             if (cursor.count == 0) {
                 cursor.close()

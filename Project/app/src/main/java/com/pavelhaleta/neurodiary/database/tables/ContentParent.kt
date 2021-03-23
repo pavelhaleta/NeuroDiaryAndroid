@@ -47,10 +47,10 @@ class ContentParent : SQLTable("ContentParent"){
     }
 
     companion object{
-        val tableName = "ContentParent"
+        const val tableName = "ContentParent"
 
         fun toList(db: SQLiteDatabase, whereClause: String): ArrayList<ContentParent>?{
-            val script = "SELECT id FROM ${tableName} $whereClause"
+            val script = "SELECT id FROM $tableName $whereClause"
             val cursor = db.rawQuery(script, null)
             if (cursor.count == 0) {
                 cursor.close()

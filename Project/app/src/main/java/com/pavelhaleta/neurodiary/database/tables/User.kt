@@ -65,7 +65,7 @@ class User : SQLTable("User"){
         val tableName = "User"
 
         fun toList(db: SQLiteDatabase, whereClause: String): ArrayList<User>?{
-            val script = "SELECT id FROM ${tableName} $whereClause"
+            val script = "SELECT id FROM $tableName $whereClause"
             val cursor = db.rawQuery(script, null)
             if (cursor.count == 0) {
                 cursor.close()

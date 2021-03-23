@@ -8,6 +8,14 @@
     <string name="sign_in">Sign In</string>
     <string name="sign_up">Sign Up</string>
     <string name="welcome_title">Welcome to NeuroDiary</string>
+    <string name="sign_up_title">Let`s create an account</string>
     <string name="password">Password</string>
     <string name="account_name">Account name</string>
+
+    <!--Strings for contact message-->
+
+    <!--Objects-->
+    <string name="cm_password">password</string>
+    <string name="cm_account_name">account name</string>
+    <string name="cm_name">name</string>
 </resources>

@@ -19,7 +19,7 @@
             android:layout_gravity="center"
             android:layout_marginBottom="50dp"
             android:text="@string/welcome_title"
-            android:textColor="@color/purple_500"
+            android:textColor="@color/black"
             android:textAlignment="center"
             android:textSize="24sp"/>
         <com.google.android.material.textfield.TextInputLayout
@@ -28,27 +28,16 @@
             android:layout_width="300dp"
             android:layout_gravity="center"
             android:layout_height="wrap_content"
-            app:boxStrokeColor="@color/purple_500">
+            android:hint="@string/password"
+            app:boxStrokeColor="@color/mainColor"
+            app:errorEnabled="true"
+            app:errorTextColor="@android:color/holo_red_light">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_password"
                 android:inputType="textPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
         </com.google.android.material.textfield.TextInputLayout>
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/mb_sign_in"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:elevation="10dp"
-            android:layout_gravity="center"
-            app:backgroundTint="@android:color/transparent"
-            android:text="@string/sign_in"
-            android:textSize="22sp"
-            android:textColor="@color/purple_500"
-            app:strokeWidth="5dp"
-            app:strokeColor="@color/purple_500"
-            app:cornerRadius="1dp"
-            />
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
