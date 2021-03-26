@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import com.google.android.material.textview.MaterialTextView
 import com.pavelhaleta.neurodiary.R
 import com.pavelhaleta.neurodiary.viewmodel.SignInVM
 import com.pavelhaleta.neurodiary.viewmodel.listeners.SignInVMListener
@@ -23,10 +24,13 @@ class SignInFragment() : Fragment(R.layout.fragment_sign_in), SignInVMListener {
                 viewModel.signIn(it.toString())
             }
         }
+        view.findViewById<MaterialTextView>(R.id.tv_create_account).setOnClickListener {
+            viewModel.changeToSignUp()
+        }
         super.onViewCreated(view, savedInstanceState)
     }
 
-    override fun errorPassword(contactMessage: ContactMessage) {
-        requireView().findViewById<TextInputLayout>(R.id.text_layout_password).error = contactMessage.toString()
+    override fun errorPassword(error: String) {
+        requireView().findViewById<TextInputLayout>(R.id.text_layout_password).error = error
     }
 }

@@ -4,6 +4,6 @@ import com.pavelhaleta.neurodiary.viewmodel.other.ContactMessage
 
 interface SignUpVMListener {
     fun allowCreate(allow: Boolean)
-    fun errorPassword(contactMessage: ContactMessage?)
-    fun errorName(contactMessage: ContactMessage?)
+    fun errorPassword(error: String?)
+    fun errorName(error: String?)
 }

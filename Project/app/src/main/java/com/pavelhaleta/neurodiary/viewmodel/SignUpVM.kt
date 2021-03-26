@@ -4,9 +4,11 @@ import android.app.Activity
 import com.pavelhaleta.neurodiary.database.DBHelper
 import com.pavelhaleta.neurodiary.database.tables.Action
 import com.pavelhaleta.neurodiary.database.tables.User
+import com.pavelhaleta.neurodiary.model.error_builder.ErrorBuilder
+import com.pavelhaleta.neurodiary.model.error_builder.ErrorObject
+import com.pavelhaleta.neurodiary.model.error_builder.ErrorValidation
 import com.pavelhaleta.neurodiary.viewmodel.listeners.SignUpVMListener
 import com.pavelhaleta.neurodiary.viewmodel.listeners.StartActivityVMListener
-import com.pavelhaleta.neurodiary.viewmodel.other.ContactMessage
 
 class SignUpVM(var activity: Activity, var mSignUpVMListener: SignUpVMListener, var mStartActivityVMListener: StartActivityVMListener): UserActionWritter {
 
@@ -48,11 +50,11 @@ class SignUpVM(var activity: Activity, var mSignUpVMListener: SignUpVMListener, 
     }
     private fun validatePassword(password: String): Boolean{
         if (password.isEmpty()){
-            mSignUpVMListener.errorPassword(ContactMessage.PASSWORD_EMPTY)
+            mSignUpVMListener.errorPassword(ErrorBuilder.default(ErrorObject.ACCOUNT_PASSWORD, ErrorValidation.DATA_IS_EMPTY))
             return false
         }
         if (password.length > 50){
-            mSignUpVMListener.errorPassword(ContactMessage.PASSWORD_LENGTH)
+            mSignUpVMListener.errorPassword(ErrorBuilder.default(ErrorObject.ACCOUNT_PASSWORD, ErrorValidation.STRING_TOO_LONG))
             return false
         }
         mSignUpVMListener.errorPassword(null)
@@ -70,11 +72,11 @@ class SignUpVM(var activity: Activity, var mSignUpVMListener: SignUpVMListener, 
     }
     private fun validateName(name: String): Boolean{
         if (name.isEmpty()){
-            mSignUpVMListener.errorName(ContactMessage.ACCOUNT_NAME_EMPTY)
+            mSignUpVMListener.errorName(ErrorBuilder.default(ErrorObject.ACCOUNT_NAME, ErrorValidation.DATA_IS_EMPTY))
             return false
         }
         if (name.length > 50){
-            mSignUpVMListener.errorName(ContactMessage.ACCOUNT_NAME_LENGTH)
+            mSignUpVMListener.errorName(ErrorBuilder.default(ErrorObject.ACCOUNT_NAME, ErrorValidation.STRING_TOO_LONG))
             return false
         }
         mSignUpVMListener.errorName(null)

@@ -19,7 +19,7 @@ import com.pavelhaleta.neurodiary.viewmodel.listeners.SignInVMListener
 import com.pavelhaleta.neurodiary.viewmodel.listeners.SignUpVMListener
 import com.pavelhaleta.neurodiary.viewmodel.other.ContactMessage
 
-class SignUnFragment() : Fragment(R.layout.fragment_sign_up), SignUpVMListener {
+class SignUpFragment() : Fragment(R.layout.fragment_sign_up), SignUpVMListener {
 
     lateinit var viewModel: SignUpVM
 
@@ -50,20 +50,20 @@ class SignUnFragment() : Fragment(R.layout.fragment_sign_up), SignUpVMListener {
 
     }
 
-    override fun errorPassword(contactMessage: ContactMessage?) {
-        if (contactMessage == null){
+    override fun errorPassword(error: String?) {
+        if (error == null){
             requireView().findViewById<TextInputLayout>(R.id.text_layout_password).error = null
         }else{
-            requireView().findViewById<TextInputLayout>(R.id.text_layout_password).error = contactMessage.toString()
+            requireView().findViewById<TextInputLayout>(R.id.text_layout_password).error = error
         }
 
     }
 
-    override fun errorName(contactMessage: ContactMessage?) {
-        if (contactMessage == null){
+    override fun errorName(error: String?) {
+        if (error == null){
             requireView().findViewById<TextInputLayout>(R.id.text_layout_name).error = null
         }else{
-            requireView().findViewById<TextInputLayout>(R.id.text_layout_name).error = contactMessage.toString()
+            requireView().findViewById<TextInputLayout>(R.id.text_layout_name).error = error
         }
 
     }

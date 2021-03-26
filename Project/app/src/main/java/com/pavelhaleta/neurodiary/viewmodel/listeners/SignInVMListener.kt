@@ -3,5 +3,5 @@ package com.pavelhaleta.neurodiary.viewmodel.listeners
 import com.pavelhaleta.neurodiary.viewmodel.other.ContactMessage
 
 interface SignInVMListener {
-    fun errorPassword(contactMessage: ContactMessage)
+    fun errorPassword(error: String)
 }

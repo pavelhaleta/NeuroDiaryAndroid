@@ -2,26 +2,23 @@ package com.pavelhaleta.neurodiary.view.start
 
 
 import android.os.Bundle
-import android.widget.Toast
 import android.content.Intent
-import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.add
 import androidx.fragment.app.commit
-import com.google.android.material.button.MaterialButton
+import androidx.fragment.app.replace
 import com.pavelhaleta.neurodiary.R
 import com.pavelhaleta.neurodiary.database.DBHelper
 import com.pavelhaleta.neurodiary.database.tables.User
-import com.pavelhaleta.neurodiary.view.base.MainActivity
 import com.pavelhaleta.neurodiary.view.main.MainMenuActivity
-import com.pavelhaleta.neurodiary.viewmodel.other.ContactMessage
-import com.pavelhaleta.neurodiary.viewmodel.listeners.SignInVMListener
-import com.pavelhaleta.neurodiary.viewmodel.listeners.SignUpVMListener
 import com.pavelhaleta.neurodiary.viewmodel.listeners.StartActivityVMListener
 
-class StartActivity : MainActivity(R.layout.activity_start), StartActivityVMListener {
+class StartActivity : AppCompatActivity(), StartActivityVMListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_start)
+
         if (isAccountExists()) {
             //add sign in fragment
             supportFragmentManager.commit {
@@ -32,7 +29,7 @@ class StartActivity : MainActivity(R.layout.activity_start), StartActivityVMList
             //add sign up fragment
             supportFragmentManager.commit {
                 setReorderingAllowed(true)
-                add<SignUnFragment>(R.id.fragment_container_view)
+                add<SignUpFragment>(R.id.fragment_container_view)
             }
         }
     }
@@ -72,5 +69,12 @@ class StartActivity : MainActivity(R.layout.activity_start), StartActivityVMList
     override fun enterUser() {
         startActivity(Intent(this, MainMenuActivity::class.java))
         finish()
+    }
+
+    override fun changeToSignUp() {
+        supportFragmentManager.commit {
+            setReorderingAllowed(true)
+            replace<SignUpFragment>(R.id.fragment_container_view)
+        }
     }
 }

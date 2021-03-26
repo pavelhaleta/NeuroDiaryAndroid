@@ -32,7 +32,7 @@ class PeriodData : SQLTable("PeriodData"){
         }
     }
     companion object{
-        val tableName = "PeriodData"
+        const val tableName = "PeriodData"
 
         fun toList(db: SQLiteDatabase, whereClause: String): ArrayList<PeriodData>?{
             val script = "SELECT id FROM $tableName $whereClause"
