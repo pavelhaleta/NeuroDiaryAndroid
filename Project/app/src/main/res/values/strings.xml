@@ -9,14 +9,19 @@
     <string name="sign_up">Sign Up</string>
     <string name="welcome_title">Welcome to NeuroDiary</string>
     <string name="create_other">…or create another account</string>
+    <string name="sign_in_other">…or sign in</string>
     <string name="sign_up_title">Let`s create an account</string>
     <string name="password">Put password</string>
     <string name="account_name">Account name</string>
     <!--Main Menu-->
     <string name="add_image">Add image</string>
+    <string name="user_hello">Glad to see you, %1$s</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
 
-    <!--Strings for contact message-->
-
+                                                    <!--Strings for contact message-->
     <!--Objects-->
     <string name="eo_password">password</string>
     <string name="eo_account_name">account name</string>
@@ -40,4 +45,19 @@
     <string name="test">What is Lorem Ipsum?
 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.Why do we use it? It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
 </string>
+                                                            <!--Default values-->
+    <!--Actions-->
+    <string name="action_sign_in">Sign In</string>
+    <string name="action_sign_up">Sign Up</string>
+    <string name="action_exit">Exit</string>
+    <string name="action_create_record">Create record</string>
+    <string name="action_edit_record">Edit record</string>
+    <string name="action_delete_record">Delete record</string>
+    <!--Goals-->
+    <string name="goal_default">Default</string>
+    <string name="goal_psychology">Psychology</string>
+    <!--Period Data-->
+    <string name="period_data_once_day">Once a day</string>
+    <string name="period_data_twice_day">Twice a day</string>
+    <string name="period_data_once_week">Once a week</string>
 </resources>

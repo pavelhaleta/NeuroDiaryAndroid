@@ -4,7 +4,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import com.pavelhaleta.neurodiary.database.basic.SQLTable
-import com.pavelhaleta.neurodiary.database.tables.*
+import com.pavelhaleta.neurodiary.database.entity.*
 
 class DBHelper(context: Context) : SQLiteOpenHelper(
         context,
@@ -23,15 +23,15 @@ class DBHelper(context: Context) : SQLiteOpenHelper(
         if (db == null) {
             return
         }
-        createTable(db, ContentProperty())
-        createTable(db, ContentParent())
-        createTable(db, Goal())
-        createTable(db, MemoryContent())
-        createTable(db, PeriodData())
-        createTable(db, RealContent())
-        createTable(db, Record())
-        createTable(db, User())
-        createTable(db, UserAction())
+        createTable(db, TableContentProperty())
+        createTable(db, TableContentParent())
+        createTable(db, TableGoal())
+        createTable(db, TableMemoryContent())
+        createTable(db, TablePeriodData())
+        createTable(db, TableRealContent())
+        createTable(db, TableRecord())
+        createTable(db, TableUser())
+        createTable(db, TableUserAction())
 
         initialData(db)
     }
@@ -54,25 +54,26 @@ class DBHelper(context: Context) : SQLiteOpenHelper(
             }
         }
         db.execSQL(script)
+        table.initialData(db)
     }
 
     private fun initialData(db: SQLiteDatabase){
-        Action().apply {
+        TableAction().apply {
             name = "SignIn"
         }.also { it.save(db) }
-        Action().apply {
+        TableAction().apply {
             name = "SignUn"
         }.also { it.save(db) }
-        Action().apply {
+        TableAction().apply {
             name = "Create"
         }.also { it.save(db) }
-        Action().apply {
+        TableAction().apply {
             name = "Edit"
         }.also { it.save(db) }
-        Action().apply {
+        TableAction().apply {
             name = "Delete"
         }.also { it.save(db) }
-        Action().apply {
+        TableAction().apply {
             name = "Open"
         }.also { it.save(db) }
     }

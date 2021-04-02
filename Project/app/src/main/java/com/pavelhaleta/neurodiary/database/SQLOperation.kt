@@ -9,4 +9,5 @@ interface SQLOperation {
     fun loadFirstBy(db: SQLiteDatabase, whereClause: String){}
     fun save(db: SQLiteDatabase){}
     fun delete(db: SQLiteDatabase){}
+    fun initialData(db: SQLiteDatabase){}
 }

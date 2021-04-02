@@ -20,6 +20,8 @@ open class SQLTable(var tableName: String) : SQLOperation {
             _id.value = value
         }
 
+    fun isValid(): Boolean {return _id.value as Int != -1}
+
     override fun load(db: SQLiteDatabase, id: Int) {
         super.load(db, id)
         var script = "SELECT "

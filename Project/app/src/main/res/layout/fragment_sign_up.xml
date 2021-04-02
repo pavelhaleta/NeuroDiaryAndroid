@@ -74,5 +74,15 @@
             android:textColor="@color/white"
             android:textSize="18sp"
             android:text="@string/sign_up"/>
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_sign_in"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:text="@string/sign_in_other"
+            android:textColor="@color/mainColor"
+            android:textAlignment="center"
+            android:textSize="18sp"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

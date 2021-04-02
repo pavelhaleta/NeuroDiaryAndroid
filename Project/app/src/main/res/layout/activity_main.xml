@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.main.MainMenuActivity"
+    tools:context=".ui.main.view.MainMenuActivity"
     android:background="@color/white">
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar"
@@ -140,6 +140,7 @@
             android:layout_gravity="center"
             android:src="@drawable/ic_arrow_back"
             android:scaleType="fitCenter"
+            app:maxImageSize="50dp"
             app:backgroundTint="@color/mainColor"
             android:backgroundTint="@color/white"
             app:tint="@color/mainColor"
@@ -165,6 +166,7 @@
             android:layout_width="wrap_content"
             android:layout_margin="15dp"
             android:layout_gravity="center"
+            app:maxImageSize="50dp"
             android:src="@drawable/ic_arrow_forward"
             android:scaleType="fitCenter"
             android:backgroundTint="@color/white"

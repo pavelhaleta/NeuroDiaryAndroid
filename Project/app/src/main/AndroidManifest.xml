@@ -11,13 +11,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.NeuroDiary">
-        <activity android:name=".view.start.StartActivity">
+        <activity android:name=".ui.start.view.StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.main.MainMenuActivity">
+        <activity android:name=".ui.main.view.MainMenuActivity">
         </activity>
 
     </application>
